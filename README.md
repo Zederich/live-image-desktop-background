@@ -6,8 +6,9 @@ to `f.write(request.urlopen('http://yourdomain.com/foo/img.jpg').read())`. You c
 ###Planned Features
 **Very Near Future**
 
- 1. Add a config file in APPDATA, which allows the user to set path and refresh time of image. This will allow programs to be frozen/compiled, as the source no longer must be changed.
- 2. Add a simple GUI Application which writes to the config file. This will feature a few buttons for options such as refresh time and URI, making the software easier for non-technical users.
+ 1. Add a config file in APPDATA, which allows the user to set path and refresh time of image. This will allow programs to be frozen/compiled, as the source no longer must be changed. It gets the URL and refresh time from the settings.txt file.    ✓✓✓ completed!
+ 2. Add a simple GUI Application which writes to the config file. This will feature a few buttons for options such as refresh time and URI, making the software easier for non-technical users. progress: 5% 
+ ![Mockup of GUI layout][4]
  3. Get the autostart functioning. On files frozen with cx_Freeze, when i have a shortcut in my Autostart folder, I get an error at system startup.
 
 ###Other Features
@@ -37,3 +38,4 @@ You can send me suggestions for this project easily via email (<zederich0@gmail.
   [1]: http://www.python.org/downloads/
   [2]: http://sourceforge.net/projects/pywin32/files/pywin32/
   [3]: http://unlicense.org/
+  [4]: http://abload.de/img/guimockupc2pmzvokf5.jpg
