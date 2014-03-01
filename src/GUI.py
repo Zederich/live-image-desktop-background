@@ -2,9 +2,9 @@ from tkinter import *
 from tkinter.ttk import *
 from tkinter.font import Font
 from os import environ
-from tkinter.messagebox import showwarning, showinfo
+import tkinter.messagebox as messagebox
 
-
+root = Tk()
 root.wm_title("Settings - Live Image Desktop")
 
 orig_settings = open(environ['APPDATA']+"\\livewebimagedesktop\\settings.txt",'r') #Get original settings (for reset)
@@ -15,13 +15,13 @@ def to_orig():  #Will revert settings to how it was before program executed
     settings = open(environ['APPDATA']+"\\livewebimagedesktop\\settings.txt",'w')  #Settings file
     settings.write(to_write)
     settings.close()
-    messagebox.showinfo("Successfully Reset","The delay and time have been reset to:\n\n"+to_write)
+    messagebox.showinfo("Successfully Reset","The delay and time have been reset to:\n\n"+to_write+" seconds delay")
 
 def save_new(shouldquit):
     new_url = str(url.get()) #Get input for the URL.
     new_delay = delay.get()  #Get input for "delay"
     if "http://" in new_url and "." in new_url: #Some tests to make sure URL is valid.
-        if new_delay.isalnum():   #Check that the value for "delay" is a number
+        if new_delay.isnumeric():   #Check that the value for "delay" is a number
             float(new_delay)
             if  1 <= float(new_delay) <= 36000:
                 settings = open(environ['APPDATA']+"\\livewebimagedesktop\\settings.txt",'w')
@@ -35,7 +35,7 @@ def save_new(shouldquit):
             else:
                 messagebox.showwarning("Number out of Range","The number you entered is too large/small. It must be between 1 and 36000.")
         else:
-                messagebox.showwarning("Not a number","You entry for the delay is not a number.")
+            messagebox.showwarning("Not a number","You entry for the delay is not a number.")
     else:
         messagebox.showwarning("Invalid URL","You have not entered a valid URL for the image.")
     
@@ -65,5 +65,4 @@ reset_btn = Button(text="Reset", width=11,command=to_orig).grid(row=2, column=2,
 root.geometry("374x125")  #Window size
 root.resizable(0,0)
 
-if __name__ == '__main__':
-    root.mainloop()
+root.mainloop()
