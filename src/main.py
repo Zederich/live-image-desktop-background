@@ -18,15 +18,11 @@ for line in settings:
 
 imgurl = lines[0]
 delay = float(lines[1])
-print(delay)
-
-def get_image():
-    f = open(pathtoimg, 'wb')           #Open/Create image
-    f.write(request.urlopen(imgurl).read())  #Get web image and overwrite
-    f.close()
 
 while 1: #Forever
-    get_image()
+    img = open(pathtoimg, 'wb')           #Open/Create image
+    img.write(request.urlopen(imgurl).read())  #Get web image and overwrite
+    img.close()
     iad = pythoncom.CoCreateInstance(shell.CLSID_ActiveDesktop, None,
           pythoncom.CLSCTX_INPROC_SERVER, shell.IID_IActiveDesktop)
     iad.SetWallpaper(pathtoimg, 0)  #Set wallpaper
