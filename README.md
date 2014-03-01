@@ -1,14 +1,16 @@
 Live image as Desktop Background
 ================================
+
+[TOC]
+
+
 This small program will download an image from a given URI and set it as the windows desktop background. It is written in [Python][1] and requires the [pywin32][2] module. More features will be added, allowing you to customize what source to get the images from. At the moment it gets random images from lorempixel.com (CC-BY-SA) to demonstrate the feature.
-The source code is freely available and in the Public Domain ([Unlicence][3]). At the moment I am implementing a feature that will allow you to set the URI (often called URL) of the image. Changing the URI of the image is now already pretty easy, in the code (main.py) just change `f.write(request.urlopen('http://lorempixel.com/sports/1900/1080/').read())`
-to `f.write(request.urlopen('http://yourdomain.com/foo/img.jpg').read())`. You can also adjust how often the images update on the last line of code. Like I said, this will not be necessary for much longer.
+The source code is freely available and in the Public Domain ([Unlicence][3]). At the moment it allows you to change to change the settings using the GUI program, or the settings.txt folder in your `Appdata\Roaming\livewebimagedesktop` folder.
 ###Planned Features
 **Very Near Future**
 
  1. Add a config file in APPDATA, which allows the user to set path and refresh time of image. This will allow programs to be frozen/compiled, as the source no longer must be changed. It gets the URL and refresh time from the settings.txt file.    ✓✓✓ completed!
- 2. Add a simple GUI Application which writes to the config file. This will feature a few buttons for options such as refresh time and URI, making the software easier for non-technical users. progress: 5% 
- ![Mockup of GUI layout][4]
+ 2. Add a simple GUI Application which writes to the config file. This will feature a few buttons for options such as refresh time and URI, making the software easier for non-technical users. ✓✓✓ complete! Automatically checks if URL is valid, correct numbers where entered, etc. The url is checked by seeing if `http://` is in the entered text, and if it contains at least one dot.
  3. Get the autostart functioning. On files frozen with cx_Freeze, when i have a shortcut in my Autostart folder, I get an error at system startup.
 
 ###Other Features
