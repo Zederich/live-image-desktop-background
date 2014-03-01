@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Live-image-desktop-background by Zederich</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Live-image-desktop-background</h1>
+        <p class="header">This small program will download an image from a given URI and set it as the windows desktop background. More features will be added.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/Zederich/live-image-desktop-background/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/Zederich/live-image-desktop-background/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/Zederich/live-image-desktop-background">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/Zederich">Zederich</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="live-image-as-desktop-background" class="anchor" href="#live-image-as-desktop-background"><span class="octicon octicon-link"></span></a>Live image as Desktop Background</h1>
+
+<p>This small program will download an image from a given URI and set it as the windows desktop background. It is written in <a href="http://www.python.org/downloads/">Python</a> and requires the <a href="http://sourceforge.net/projects/pywin32/files/pywin32/">pywin32</a> module. More features will be added, allowing you to customize what source to get the images from. At the moment it gets random images from lorempixel.com (CC-BY-SA) to demonstrate the feature.
+The source code is freely available and in the Public Domain (<a href="http://unlicense.org/">Unlicence</a>). At the moment I am implementing a feature that will allow you to set the URI (often called URL) of the image. Changing the URI of the image is now already pretty easy, in the code (main.py) just change <code>f.write(request.urlopen('http://lorempixel.com/sports/1900/1080/').read())</code>
+to <code>f.write(request.urlopen('http://yourdomain.com/foo/img.jpg').read())</code>. You can also adjust how often the images update on the last line of code. Like I said, this will not be necessary for much longer.</p>
+
+<h3>
+<a name="planned-features" class="anchor" href="#planned-features"><span class="octicon octicon-link"></span></a>Planned Features</h3>
+
+<p><strong>Very Near Future</strong></p>
+
+<ol>
+<li>Add a config file in APPDATA, which allows the user to set path and refresh time of image. This will allow programs to be frozen/compiled, as the source no longer must be changed. It gets the URL and refresh time from the settings.txt file.    ✓✓✓ completed!</li>
+<li>Add a simple GUI Application which writes to the config file. This will feature a few buttons for options such as refresh time and URI, making the software easier for non-technical users. progress: 5% 
+<img src="http://abload.de/img/guimockupc2pmzvokf5.jpg" alt="Mockup of GUI layout">
+</li>
+<li>Get the autostart functioning. On files frozen with cx_Freeze, when i have a shortcut in my Autostart folder, I get an error at system startup.</li>
+</ol><h3>
+<a name="other-features" class="anchor" href="#other-features"><span class="octicon octicon-link"></span></a>Other Features</h3>
+
+<ol>
+<li>I want to implement a feature that checks the refresh rate and time of the images, and automatically adjusts it. At the moment, if I set the program to refresh the image every five minutes, and the image from the web updates every five minutes, depending on the offset it could take up to ten minutes for a change to be seen. If it updates more frequently, that would take up unnecessary memory and bandwidth.</li>
+<li>Optimize this program more. It takes up ~8000K of memeory at the moment, which isn't much, but could be less.</li>
+</ol><p>I am open to any suggestions for other features.</p>
+
+<h2>
+<a name="technical-details" class="anchor" href="#technical-details"><span class="octicon octicon-link"></span></a>Technical Details</h2>
+
+<p>The program works using a very simple method.</p>
+
+<ol>
+<li>At startup the program opens the file <code>bg.jpg</code> in the TEMP folder
+
+<ul>
+<li>If this file does not exist, it will be created.</li>
+</ul>
+</li>
+<li>
+<code>urlopen</code> will retrieve the image from the specified URI.</li>
+<li>This image will be written to the file we opened/created <code>bg.jpg</code>.</li>
+<li>This image is set as the desktop background</li>
+<li>After after a specified amount of time (1 min. in my program), steps 1-4 will be repeated, re-fetching the image, overwriting it and setting as the desktop background.</li>
+</ol><h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>You can send me suggestions for this project easily via email (<a href="mailto:zederich0@gmail.com">zederich0@gmail.com</a>).</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
