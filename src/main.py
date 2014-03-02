@@ -6,8 +6,6 @@ from os import environ
 
 pathtoimg = environ['TEMP']+"\\bg.jpg"  #The file bg.jpg in the temp folder
 
-print(pathtoimg)
-
 settings = open(environ['APPDATA']+"\\livewebimagedesktop\\settings.txt",'r')  #Settings file
 
 lines = []
