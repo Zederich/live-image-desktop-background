@@ -15,8 +15,8 @@ The source code is freely available and in the Public Domain ([Unlicence][3]). A
  
 ###Other Features
 
- 1. I want to implement a feature that checks the refresh rate and time of the images, and automatically adjusts it. At the moment, if I set the program to refresh the image every five minutes, and the image from the web updates every five minutes, depending on the offset it could take up to ten minutes for a change to be seen. If it updates more frequently, that would take up unnecessary memory and bandwidth.
- 2. Optimize this program more. It takes up ~8000K of memeory at the moment, which isn't much, but could be less.
+ 1. I want to implement a feature that checks the refresh rate and time of the images, and automatically adjusts it. At the moment, if I set the program to refresh the image every five minutes, and the image from the web updates every five minutes, depending on the offset it could take up to ten minutes for a change to be seen. If it updates more frequently, that would take up unnecessary memory and bandwidth. **Progress: Completed (Adding to GUI as well)**
+ 2. Optimize this program more. It takes up ~8000K of memory at the moment, which isn't much, but could be less.
 
 I am open to any suggestions for other features.
 
