@@ -32,21 +32,25 @@ def to_orig():
 
 #Disables delay field if button checked, disables otherwise
 def toggle_delay():
-    if should_auto.get() == "True":
+    print(should_auto.get())
+    if should_auto.get():
         delay.configure(state="disabled")
     else:
         delay.configure(state="normal")
 
 #Will save the entries into settings.txt. If shouldquit is true, the window will be closed afterwards
 def save_new(shouldquit):
-    print(should_auto.get())
+    if should_auto.get():
+        new_should_auto = "True"
+    else:
+        new_should_auto = "False"
     new_url = str(url.get()) #Get input for the URL.
     new_delay = delay.get()  #Get input for "delay"
     if "http://" in new_url and "." in new_url: #Some tests to make sure URL is valid.
         if new_delay.isnumeric():   #Check that the value for "delay" is a number
             if  1 <= float(new_delay) <= 36000:  #Check size of delay
                 settings = open("{0}\\livewebimagedesktop\\settings.txt".format(environ['APPDATA']),'w')
-                settings.write( "{0}\n{1}\n{2}".format(new_url,new_delay, should_auto.get()) )  #Wite new input values to file, including "True" if checkbox selected.
+                settings.write( "{0}\n{1}\n{2}".format(new_url,new_delay, str(new_should_auto)) )  #Wite new input values to file, including "True" if checkbox selected.
                 settings.close()
                 messagebox.showinfo("Done!","your changes have been saved. You will now need to restart the Live-Web-Image Program for the changes to take effect.")
                 if shouldquit:  #Close window
@@ -74,11 +78,11 @@ Label(root, text="URL of image").grid(row=1, padx=7, pady=0, columnspan=2)
 Label(root, text="Delay (seconds)").grid(row=1, column=2, columnspan=2, padx=7, pady=0)
 
 #Variable for checkbutton
-should_auto = StringVar()
+should_auto = BooleanVar()
 
 url = Entry(root, width = 24, font=("Verdana", 13))
 delay = Spinbox(root, from_=5, to=3600, width=5, increment=5, font=("Verdana", 13))
-autodetect = Checkbutton(root, text="Autodetect", var=should_auto, onvalue = "True", offvalue = "False", command=toggle_delay)
+autodetect = Checkbutton(root, text="Autodetect", var=should_auto, onvalue = True, offvalue = False, command=toggle_delay)
 
 url.grid(row=0, column=0, padx=7, pady=5, columnspan=2, sticky=W)
 delay.grid(row=0, column=3, padx=7, pady=5, sticky=W)

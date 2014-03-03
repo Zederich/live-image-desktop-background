@@ -1,6 +1,8 @@
 #Live web image as desktop program
 #Executes the program based on the settings and changes the background.
-#Developed by Zederich (zederich.github.com)
+#Developed by Zederich (github.com/Zederich)
+#The software is released into the public domain.
+#For more information see LICENCE in the repository under <https://github.com/Zederich/live-image-desktop-background>
 
 import pythoncom
 from urllib.request import urlopen
