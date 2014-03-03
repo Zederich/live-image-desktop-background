@@ -1,14 +1,19 @@
+#Live web image as desktop program
+#Executes the program based on the settings and changes the background.
+#Developed by Zederich (zederich.github.com)
+
 import pythoncom
 from urllib.request import urlopen
 from win32com.shell import shell, shellcon
 from time import sleep
 from os import environ
-import tkinter.messagebox as messagebox
+import tkinter.messagebox as messagebox #Won't work with from x import y outside of IDLE.
 
 pathtoimg = "{0}\\bg.jpg".format(environ['TEMP'])  #The file bg.jpg in the temp folder
 
 settings = open("{0}\\livewebimagedesktop\\settings.txt".format(environ['APPDATA']),'r')  #Settings file
 
+#Read settings.txt line by line, faster than f.readline()
 lines = []
 count = 0
 for line in settings:
@@ -16,30 +21,23 @@ for line in settings:
 
 imgurl = lines[0]
 delay = float(lines[1])
-print(lines[2].lower() == 'true')
-should_autodetect = lines[2].lower() == 'true'
-print(should_autodetect)
-print(type(should_autodetect))
+should_autodetect = lines[2].lower() == 'true' #Set autodetect to boolean True if string "true" in settings.txt
 
 
+#Get filesize of the image
 def getfilesize():
     opened = urlopen(imgurl)
-    if "Content-Length" in opened.headers:
+    if "Content-Length" in opened.headers: #If content header available
         size = int(opened.headers["Content-Length"])
-    else:
+    else: #If no header available
         size = len (opened.read ());
-        print("dl")
     return size
 
 
-if should_autodetect:
-    print("Auto")
-    fsize = getfilesize()
-    initialised = True
+if should_autodetect: #"true" on line 3 of settings.txt
+    initialised = True #FIrst time looping, after program started
     while 1: #Forever
         if getfilesize() != fsize or initialised: #Make sure it enters the if for the first time.
-            print("Updated")
-            print(getfilesize())
             img = open(pathtoimg, 'wb')           #Open/Create image
             img.write(urlopen(imgurl).read())  #Get web image and overwrite
             img.close()
@@ -47,10 +45,10 @@ if should_autodetect:
                   pythoncom.CLSCTX_INPROC_SERVER, shell.IID_IActiveDesktop)
             iad.SetWallpaper(pathtoimg, 0)  #Set wallpaper
             iad.ApplyChanges(shellcon.AD_APPLY_ALL)
-            fsize = getfilesize()
+            fsize = getfilesize() #set fsize so it can be compared to getfilesize() later.
         else:
             pass
-        sleep(5)
+        sleep(5) #Only checks for update every 5 seconds.
         if initialised: #Prevent the variable being changed every cycle.
             initialised = False
         else:
@@ -65,4 +63,4 @@ else:
               pythoncom.CLSCTX_INPROC_SERVER, shell.IID_IActiveDesktop)
         iad.SetWallpaper(pathtoimg, 0)  #Set wallpaper
         iad.ApplyChanges(shellcon.AD_APPLY_ALL)
-        sleep(delay) #Wait (seconds)
+        sleep(delay)
