@@ -7,28 +7,27 @@ import tkinter.messagebox as messagebox
 root = Tk()
 root.wm_title("Settings - Live Image Desktop")
 
-orig_settings = open(environ['APPDATA']+"\\livewebimagedesktop\\settings.txt",'r') #Get original settings (for reset)
+orig_settings = open("{0}\\livewebimagedesktop\\settings.txt".format(environ['APPDATA']),'r' ) #Get original settings (for reset)
 to_write = orig_settings.read()
 orig_settings.close()
 
 def to_orig():  #Will revert settings to how it was before program executed
-    settings = open(environ['APPDATA']+"\\livewebimagedesktop\\settings.txt",'w')  #Settings file
+    settings = open("{0}\\livewebimagedesktop\\settings.txt".format(environ['APPDATA']),'w')  #Settings file
     settings.write(to_write)
     settings.close()
-    messagebox.showinfo("Successfully Reset","The delay and time have been reset to:\n\n"+to_write+" seconds delay")
+    messagebox.showinfo("Successfully Reset","The delay and time have been reset to:\n\n{0}".format(to_write))
 
 def save_new(shouldquit):
     new_url = str(url.get()) #Get input for the URL.
     new_delay = delay.get()  #Get input for "delay"
     if "http://" in new_url and "." in new_url: #Some tests to make sure URL is valid.
         if new_delay.isnumeric():   #Check that the value for "delay" is a number
-            float(new_delay)
             if  1 <= float(new_delay) <= 36000:
-                settings = open(environ['APPDATA']+"\\livewebimagedesktop\\settings.txt",'w')
+                settings = open("{0}\\livewebimagedesktop\\settings.txt".format(environ['APPDATA']),'w')
                 settings.write(new_url+"\n"+new_delay)  #Wite new input values to file
                 settings.close()
                 messagebox.showinfo("Done!","your changes have been saved. You will now need to restart the Live-Web-Image Program for the changes to take effect.")
-                if shouldquit:  #Close window 
+                if shouldquit:  #Close window
                     root.destroy()
                 else:
                     pass
@@ -38,7 +37,7 @@ def save_new(shouldquit):
             messagebox.showwarning("Not a number","You entry for the delay is not a number.")
     else:
         messagebox.showwarning("Invalid URL","You have not entered a valid URL for the image.")
-    
+
 
 def save_new_cls(): #Save and close window
     save_new(True)

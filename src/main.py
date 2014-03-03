@@ -5,13 +5,13 @@ from time import sleep
 from os import environ
 import tkinter.messagebox as messagebox
 
-pathtoimg = environ['TEMP']+"\\bg.jpg"  #The file bg.jpg in the temp folder
+pathtoimg = "{0}\\bg.jpg".format(environ['TEMP'])  #The file bg.jpg in the temp folder
 
-settings = open(environ['APPDATA']+"\\livewebimagedesktop\\settings.txt",'r')  #Settings file
+settings = open("{0}\\livewebimagedesktop\\settings.txt".format(environ['APPDATA']),'r')  #Settings file
 
 lines = []
 count = 0
-for line in settings: 
+for line in settings:
     lines.append(line)
 
 imgurl = lines[0]
