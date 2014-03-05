@@ -17,13 +17,13 @@ settings = open("{0}\\livewebimagedesktop\\settings.txt".format(environ['APPDATA
 
 #Read settings.txt line by line, faster than f.readline()
 lines = []
-count = 0
 for line in settings:
     lines.append(line)
 
 imgurl = lines[0]
-delay = float(lines[1])
+delay = lines[1].rstrip()
 should_autodetect = lines[2].lower() == 'true' #Set autodetect to boolean True if string "true" in settings.txt
+print(delay)
 
 
 #Get filesize of the image
