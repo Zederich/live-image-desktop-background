@@ -34,10 +34,11 @@ Technical Details
 
 Contributing
 --------------
-You can send me suggestions for this project easily via email (<zederich0@gmail.com>).
+You can send me suggestions for this project easily via my form on [my website][5] or send me an email (<zederich0@gmail.com>).
 
 
   [1]: http://www.python.org/downloads/
   [2]: http://sourceforge.net/projects/pywin32/files/pywin32/
   [3]: http://unlicense.org/
   [4]: http://abload.de/img/gui-screenshotojr6l.gif
+  [5]: http://zederich.github.io/contact-and-contribuition
